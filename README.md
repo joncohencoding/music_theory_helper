@@ -1,7 +1,12 @@
 # music_theory_helper
 Python Project to see how the notes in chords progressions interact with each other
 
-# CHORD_TYPES 
+## To Run
+Run 'pip install' to lock pipfile
+
+Add file 'API_KEY' with your chatGPT API key
+
+## CHORD_TYPES 
     # regular
     ('major', ['1,3,5', ['', 'M', 'maj']]),  # Y
     ('minor', ['1,-3,5', ['m', 'min']]),  # Y

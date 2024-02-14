@@ -29,6 +29,8 @@ def get_chord_notes(chord_name) -> list[Note]:
     return notes
 
 
+# Take a chord name as input, convert to a ChordSymbol object
+# using 
 def get_chord_intervals(chord_name) -> list[str]:
     # Parse the chord name to a Chord object
     chord_obj = harmony.ChordSymbol(chord_name)
@@ -77,7 +79,7 @@ def add_chords_to_hist(note_hist: dict[str, int], new_chord_list: list[Chord]):
 
 
 # Find and return the true note so we can compare notes that are the same but don't have the same name
-# For Example, B- and C#
+# For Example, C- and B#
 def get_true_note(natural_note, steps) -> str:
     try:
         natural_note_index: int = TRUE_NOTES.index(natural_note)
