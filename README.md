@@ -1,3 +1,5 @@
+# music_theory_helper
+Python Project to see how the notes in chords progressions interact with each other
 
 # CHORD_TYPES 
     # regular
@@ -63,4 +65,3 @@
     ('pedal', ['1', ['pedal']]),  # Y
     ('power', ['1,5', ['power']]),  # Y
     ('Tristan', ['1,#4,#6,#9', ['tristan']]),  # Y
-])
