@@ -42,5 +42,5 @@ def find_key(chord_list: List[Chord]):
         chord_list_string += f'{chord_name}, '
 
     message: str = f'What key is this list of chords? {chord_list_string}'
-    print(asyncio.run(get_response(message, mock=True)))
+    print(asyncio.run(get_response(message, mock=False)))
 

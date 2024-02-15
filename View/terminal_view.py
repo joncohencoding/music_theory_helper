@@ -47,3 +47,7 @@ def view_intervals(chord: Chord):
         formatted_interval = interval.center(max_width)
         print(f'{color(formatted_interval, COLORS.MAGENTA)}', end=' | ')
     print()
+
+
+def view_simple_chord_list(chords: List[Chord]) -> None:
+    print("Chords: " + ", ".join(chord.chord_name for chord in chords))
