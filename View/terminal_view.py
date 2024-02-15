@@ -40,6 +40,7 @@ def view_notes(chord: Chord, chord_hist: Dict[str, int]) -> None:
         print(f'{color(formatted_note, note_color)}', end=' | ')
     print()
 
+
 def view_intervals(chord: Chord):
     max_width = 4
     print('Interval: | ', end='')
