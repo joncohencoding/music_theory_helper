@@ -1,5 +1,6 @@
-from Controller.main_controller import init_controller
+from Controller.main_controller import MainController
 
 
 if __name__ == '__main__':
-    init_controller()
+    controller: MainController = MainController()
+    controller.run()
