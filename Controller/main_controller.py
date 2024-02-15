@@ -1,9 +1,8 @@
-from Services.music_service import build_chord, build_hist, add_chords_to_hist
 from Models.Chord import Chord
 from Services.chatgpt import test_response, find_key
-from View.terminal_view import view_chords_and_notes, view_note_hist, view_simple_chord_list
-from Controller.controller_helper import accept_new_chords, examine_chords
-
+from View.terminal_view import view_simple_chord_list
+from Controller.controller_helper import listen_new_chords, listen_remove_chords, examine_chords
+import threading
 
 class MainController:
     def __init__(self):
@@ -20,7 +19,7 @@ class MainController:
                                "2. Remove: To remove chords you have added\n"
                                "3. View: To view current chord list\n"
                                "4. Examine: To examine and compare notes in your chord list\n"
-                               "5. ChatGPT: To use ChatGPT capabilities\n"
+                               "5. Key: To find the key\n"
                                "6: Clear: To clear chord_list\n\n")
             if user_input.lower() == 'exit':
                 break
@@ -29,10 +28,11 @@ class MainController:
                 test_response()
 
             elif user_input.lower() in ('1', 'add'):
-                accept_new_chords(self)
+                listen_new_chords(self)
 
             elif user_input.lower() in ('2', 'remove'):
                 # add remove function
+                listen_remove_chords(self)
                 print("Remove not yet implemented")
 
             elif user_input.lower() in ('3', 'View'):
@@ -42,8 +42,11 @@ class MainController:
             elif user_input.lower() in ('4', 'examine'):
                 examine_chords(self)
 
-            elif user_input.lower() in ('5', 'chatgpt'):
-                find_key(self.chord_list)
+            elif user_input.lower() in ('5', 'chatgpt', 'key'):
+                gpt_thread = threading.Thread(target=gpt_integration(self), daemon=True)
+                gpt_thread.start()
+                gpt_thread.join()  # Wait for GPT-3 to finish before accepting more user input
+                # find_key(self.chord_list)
 
             elif user_input.lower() in ('6', 'clear'):
                 self.chord_list.clear()
@@ -55,4 +58,8 @@ class MainController:
 
             print()
 
+
+def gpt_integration(self):
+    print("GPT thinking...")
+    find_key(self.chord_list)
 

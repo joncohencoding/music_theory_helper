@@ -1,5 +1,6 @@
 from typing import List
 
+# TRUE_NOTES is used so C# and D- will be viewed as the same note even though they are nominally different
 TRUE_NOTES: List[str] = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
 
 

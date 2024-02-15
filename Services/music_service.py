@@ -76,6 +76,15 @@ def add_chords_to_hist(note_hist: dict[str, int], new_chord_list: list[Chord]):
                 note_hist[note.get_true_note()] = 1
     return note_hist
 
+# Return updated note_hist
+def add_chord_to_hist(note_hist: dict[str, int], new_chord: Chord) -> dict[str, int]:
+    for note in new_chord.notes:
+        if note.get_true_note() in note_hist:
+            note_hist[note.get_true_note()] += 1
+        else:
+            note_hist[note.get_true_note()] = 1
+    return note_hist
+
 
 
 # Find and return the true note so we can compare notes that are the same but don't have the same name
