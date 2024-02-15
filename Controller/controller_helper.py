@@ -1,6 +1,5 @@
 from Models.Chord import Chord
 from Services.music_service import build_chord, add_chords_to_hist, build_hist, add_chord_to_hist
-from View.terminal_view import view_note_hist
 
 
 def listen_new_chords(controller) -> None:
@@ -60,5 +59,5 @@ def listen_remove_chords(controller) -> None:
 def examine_chords(controller) -> None:
     controller.new_chord_list.clear()
     controller.view.display_chords_and_notes(controller.chord_list, controller.note_hist)
-    view_note_hist(controller.note_hist)
+    controller.view.display_note_hist(controller.note_hist)
     controller.view.get_input("Hit enter to return to the menu")

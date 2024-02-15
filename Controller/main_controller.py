@@ -2,7 +2,6 @@ import os
 
 from Models.Chord import Chord
 from Services.chatgpt import test_response, find_key
-from View.terminal_view import view_simple_chord_list
 from Controller.controller_helper import listen_new_chords, listen_remove_chords, examine_chords
 import threading
 
@@ -33,40 +32,44 @@ class MainController:
                                              "3. View: To view current chord list\n"
                                              "4. Examine: To examine and compare notes in your chord list\n"
                                              "5. Key: To find the key\n"
-                                             "6: Clear: To clear chord_list\n\n")
+                                             "6: Clear: To clear chord list\n\n")
 
-            if user_input.lower() == 'exit':
-                break
+            self.handle_input(user_input)
 
-            elif user_input == 'test':
-                test_response()
+    def handle_input(self, user_input):
+        if user_input.lower() == 'exit':
+            return
 
-            elif user_input.lower() in ('1', 'add'):
-                listen_new_chords(self)
+        elif user_input == 'test':
+            test_response()
 
-            elif user_input.lower() in ('2', 'remove'):
-                listen_remove_chords(self)
+        elif user_input.lower() in ('1', 'add'):
+            listen_new_chords(self)
 
-            elif user_input.lower() in ('3', 'view'):
-                self.view.display_simple_chord_list(self.chord_list)
-                self.view.get_input("Press enter to return to menu")
+        elif user_input.lower() in ('2', 'remove'):
+            listen_remove_chords(self)
 
-            elif user_input.lower() in ('4', 'examine'):
-                examine_chords(self)
+        elif user_input.lower() in ('3', 'view'):
+            self.view.display_simple_chord_list(self.chord_list)
+            self.view.get_input("Press enter to return to menu")
 
-            elif user_input.lower() in ('5', 'chatgpt', 'key'):
-                gpt_thread = threading.Thread(target=gpt_integration(self), daemon=True)
-                gpt_thread.start()
-                gpt_thread.join()  # Wait for GPT to finish before accepting more user input
+        elif user_input.lower() in ('4', 'examine'):
+            examine_chords(self)
 
-            elif user_input.lower() in ('6', 'clear'):
-                self.chord_list.clear()
-                self.note_hist.clear()
+        elif user_input.lower() in ('5', 'chatgpt', 'key'):
+            gpt_thread = threading.Thread(target=gpt_integration(self), daemon=True)
+            gpt_thread.start()
+            gpt_thread.join()  # Wait for GPT to finish before accepting more user input
 
-            else:
-                self.view.display_message("Invalid input")
+        elif user_input.lower() in ('6', 'clear'):
+            self.chord_list.clear()
+            self.note_hist.clear()
 
-            self.view.display_message("")
+        else:
+            self.view.display_message("Invalid input")
+
+        self.view.display_message("")
+
 
 
 def gpt_integration(controller):
