@@ -50,5 +50,4 @@ def view_intervals(chord: Chord):
 
 
 def view_simple_chord_list(chords: List[Chord]) -> None:
-    for chord in chords:
-        print(chord)
+    print("Chords: " + ", ".join(chord.chord_name for chord in chords))
