@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Dict, Any
 
-from Models.Chord import Chord
+from Models.chord import Chord
 from Utils.Colors import color, COLORS, get_color
 
 
@@ -74,7 +74,13 @@ class TerminalView(ViewInterface):
             print()
 
     def display_note_hist(self, note_hist: Dict[str, int]) -> None:
-        pass
+        sorted_hist = dict(sorted(note_hist.items(), key=lambda item: item[1], reverse=True))
+        for key, value in sorted_hist.items():
+            if int(value) > 1:
+                print(f'{key}: {value}')
+            else:
+                print()
+                break
 
     def display_simple_chord_list(self, chords: List[Chord]) -> None:
         print("Chords: " + ", ".join(chord.chord_name for chord in chords))

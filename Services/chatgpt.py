@@ -6,7 +6,7 @@ import asyncio
 # aclient = AsyncOpenAI()
 from openai import OpenAI
 
-from Models.Chord import Chord
+from Models.chord import Chord
 
 API_KEY = open("API_KEY", "r").read().strip()
 os.environ['OPENAI_API_KEY'] = API_KEY
