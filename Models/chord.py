@@ -1,6 +1,6 @@
 from typing import Dict
 
-from Models.Note import Note
+from Models.note import Note
 from Utils.Colors import COLORS, get_color, color
 
 
