@@ -1,5 +1,5 @@
 # music_theory_helper
-Python Project to see how the notes in chords progressions interact with each other
+Python Project with MVC design to see how the notes in chords progressions interact with each other
 
 ## To Run
 Run 'pip install' to lock pipfile
